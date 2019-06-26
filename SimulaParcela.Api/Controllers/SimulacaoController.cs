@@ -18,6 +18,7 @@ namespace SimulaParcela.Api.Controllers
         {
             _bus = bus;
             _simulacaoRepositorio = simulacaoRepositorio;
+
         }           
        
         [HttpGet]

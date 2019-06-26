@@ -5,9 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rebus.Config;
 using Rebus.Routing.TypeBased;
+using Rebus.Persistence.InMem;
 using Rebus.ServiceProvider;
+using Rebus.Transport.InMem;
 using SimulaParcela.Api.Configuration;
 using SimulaParcela.Dominio.Command;
+using SimulaParcela.Dominio.Entidade;
 using SimulaParcela.Dominio.IRepositorio;
 using SimulaParcela.Dominio.Notification;
 using SimulaParcela.Repositorio;
@@ -29,11 +32,16 @@ namespace SimulaParcela.Api
             services.AddAutoMapper();
             services.AutoRegisterHandlersFromAssemblyOf<SimulacaoCommandHandler>();
 
-            services.AddRebus(configureRebus => configureRebus
-                    .Transport(t => t.UseRabbitMq("amqp://127.0.0.1:5672", "AspNetCore"))
-                    .Logging(l => l.ColoredConsole())
-                    .Routing(r => r.TypeBased().MapFallback("AspNetCore")));
-
+            //services.AddRebus(configureRebus => configureRebus
+            //        .Transport(t => t.UseRabbitMq("amqp://127.0.0.1:5672", "AspNetCore"))
+            //        .Logging(l => l.ColoredConsole())
+            //        .Routing(r => r.TypeBased().MapFallback("AspNetCore")));            
+            var subscriberStore = new InMemorySubscriberStore();
+            services.AddRebus(configure => configure
+                .Transport(t => t.UseInMemoryTransport(new InMemNetwork(), "Messages"))
+                .Subscriptions(s => s.StoreInMemory(subscriberStore))
+                .Routing(r => r.TypeBased().MapAssemblyOf<SimulacaoCommandHandler>("Messages")));                            
+            
             services.AddScoped<ISimulacaoRepositorio,SimulacaoRepositorio>();
             services.AddScoped<INotificacao,NotificacaoContext>();
             services.AddScoped<SimulacaoContext>();

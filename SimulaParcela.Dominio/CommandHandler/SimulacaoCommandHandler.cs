@@ -22,7 +22,7 @@ namespace SimulaParcela.Dominio.Command
             _bus = bus;
             _mapper = mapper;
             _simulacaoRepositorio = simulacaoRepositorio;
-            _bus.Subscribe<SimularParcelamentoEvento>();
+            //_bus.Subscribe<SimularParcelamentoEvento>().Wait();
         }
         
 
@@ -42,7 +42,6 @@ namespace SimulaParcela.Dominio.Command
 
         public async Task Handle(SimularParcelamentoEvento message)
         {
-             var teste =  message;
         }
     }
 }

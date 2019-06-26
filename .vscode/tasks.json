@@ -1,0 +1,44 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "3.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet build",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        //{
+        //    "label": "test",
+        //    "command": "dotnet",
+        //    "type": "shell",
+        //    "group": "test",
+        //    "args": [
+        //        "test",
+        //        "${workspaceFolder}/AspNetCoreAngular.Teste/AspNetCoreAngular.Teste.csproj"
+        //    ],
+        //    "presentation": {
+        //        "reveal": "silent"
+        //    },
+        //    "problemMatcher": "$msCompile"
+        //},
+        //Tarefa para inicializar o projeto .Net Core Api.
+        {
+            "label": "run",
+            "command": "dotnet run --project SimulaParcela.Api",
+            "type": "shell",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

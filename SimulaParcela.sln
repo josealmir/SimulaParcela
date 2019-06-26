@@ -9,25 +9,24 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulaParcela.Repositorio",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulaParcela.Api", "SimulaParcela.Api\SimulaParcela.Api.csproj", "{AC4EA866-6B38-4168-B8A9-8541401E44BC}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SimulaParcelaUi", "SimulaParcelaUi\", "{79F9F431-35BB-4065-A90A-D687E61315E5}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SimulaParcela.Ui", "SimulaParcela.Ui\", "{A9A9309D-D03B-4DA1-9564-7480214D9521}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_61680"
-		Debug.AspNetCompiler.PhysicalPath = "SimulaParcelaUi\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61680\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51809"
+		Debug.AspNetCompiler.PhysicalPath = "SimulaParcela.Ui\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51809\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_61680"
-		Release.AspNetCompiler.PhysicalPath = "SimulaParcelaUi\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61680\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51809"
+		Release.AspNetCompiler.PhysicalPath = "SimulaParcela.Ui\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51809\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "61680"
-		SlnRelativePath = "SimulaParcelaUi\"
+		VWDPort = "51809"
 	EndProjectSection
 EndProject
 Global
@@ -76,18 +75,18 @@ Global
 		{AC4EA866-6B38-4168-B8A9-8541401E44BC}.Release|x64.Build.0 = Release|Any CPU
 		{AC4EA866-6B38-4168-B8A9-8541401E44BC}.Release|x86.ActiveCfg = Release|Any CPU
 		{AC4EA866-6B38-4168-B8A9-8541401E44BC}.Release|x86.Build.0 = Release|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Debug|x64.Build.0 = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Debug|x86.Build.0 = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Release|x64.ActiveCfg = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Release|x64.Build.0 = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Release|x86.ActiveCfg = Debug|Any CPU
-		{79F9F431-35BB-4065-A90A-D687E61315E5}.Release|x86.Build.0 = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Debug|x64.Build.0 = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Debug|x86.Build.0 = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Release|x64.ActiveCfg = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Release|x64.Build.0 = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Release|x86.ActiveCfg = Debug|Any CPU
+		{A9A9309D-D03B-4DA1-9564-7480214D9521}.Release|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
