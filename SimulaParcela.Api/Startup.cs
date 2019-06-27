@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Rebus.Config;
-using Rebus.Routing.TypeBased;
 using Rebus.Persistence.InMem;
+using Rebus.Routing.TypeBased;
 using Rebus.ServiceProvider;
 using Rebus.Transport.InMem;
 using SimulaParcela.Api.Configuration;
 using SimulaParcela.Dominio.Command;
-using SimulaParcela.Dominio.Entidade;
+using SimulaParcela.Dominio.Envet;
 using SimulaParcela.Dominio.IRepositorio;
 using SimulaParcela.Dominio.Notification;
 using SimulaParcela.Repositorio;
@@ -38,9 +37,9 @@ namespace SimulaParcela.Api
             //        .Routing(r => r.TypeBased().MapFallback("AspNetCore")));            
             var subscriberStore = new InMemorySubscriberStore();
             services.AddRebus(configure => configure
-                .Transport(t => t.UseInMemoryTransport(new InMemNetwork(), "Messages"))
-                .Subscriptions(s => s.StoreInMemory(subscriberStore))
-                .Routing(r => r.TypeBased().MapAssemblyOf<SimulacaoCommandHandler>("Messages")));                            
+                    .Transport(t => t.UseInMemoryTransport(new InMemNetwork(), "Messages"))
+                    .Subscriptions(s => s.StoreInMemory(subscriberStore))
+                    .Routing(r => r.TypeBased().MapAssemblyOf<SimulacaoCommandHandler>("Messages")));                            
             
             services.AddScoped<ISimulacaoRepositorio,SimulacaoRepositorio>();
             services.AddScoped<INotificacao,NotificacaoContext>();
@@ -61,7 +60,7 @@ namespace SimulaParcela.Api
                 app.UseHsts();
             }
 
-            app.ApplicationServices.UseRebus();
+            app.ApplicationServices.UseRebus(async bus => await bus.Subscribe<SimularParcelamentoEvent>());
 
             app.UseCors(x =>
             {

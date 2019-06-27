@@ -2,10 +2,10 @@
 
 namespace SimulaParcela.Dominio.Envet
 {
-    public class SimularParcelamentoEvento
+    public class SimularParcelamentoEvent
     {
         public Simulacao Simulacao { get; private set; }
-        public SimularParcelamentoEvento(Simulacao simulacao)
+        public SimularParcelamentoEvent(Simulacao simulacao)
         {
             Simulacao =  simulacao;
         }

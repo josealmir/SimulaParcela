@@ -21,14 +21,6 @@ namespace SimulaParcela.Api.Controllers
 
         }           
        
-        [HttpGet]
-        public async Task<ActionResult> Get()
-        {
-            //var lista = _simulacaoRepositorio.Get();
-            return Ok();
-        }
-
-
         [HttpPost]
         public async Task<ActionResult> Post(RegistrarNovaSimulacaoCommand model)
         {
@@ -39,11 +31,20 @@ namespace SimulaParcela.Api.Controllers
         [HttpPut("{id}")]
         public void Put()
         {
+
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Get()
+        {
+            //var lista = _simulacaoRepositorio.Get();
+            return Ok();
         }
     }
 }

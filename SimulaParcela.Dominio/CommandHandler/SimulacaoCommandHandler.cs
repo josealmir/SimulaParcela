@@ -4,12 +4,13 @@ using Rebus.Handlers;
 using SimulaParcela.Dominio.Entidade;
 using SimulaParcela.Dominio.Envet;
 using SimulaParcela.Dominio.IRepositorio;
+using SimulaParcela.Dominio.Notification;
 using System;
 using System.Threading.Tasks;
 
 namespace SimulaParcela.Dominio.Command
 {
-    public class SimulacaoCommandHandler : IHandleMessages<RegistrarNovaSimulacaoCommand>, IHandleMessages<SimularParcelamentoEvento>
+    public class SimulacaoCommandHandler : IHandleMessages<RegistrarNovaSimulacaoCommand>, IHandleMessages<SimularParcelamentoEvent>
     {        
         private readonly IBus _bus;
         private readonly IMapper _mapper;
@@ -17,12 +18,12 @@ namespace SimulaParcela.Dominio.Command
 
         public SimulacaoCommandHandler(IBus bus, 
                                        IMapper mapper,
-                                       ISimulacaoRepositorio simulacaoRepositorio)
+                                       ISimulacaoRepositorio simulacaoRepositorio,
+                                       INotificacao notificacao)
         {
             _bus = bus;
             _mapper = mapper;
             _simulacaoRepositorio = simulacaoRepositorio;
-            //_bus.Subscribe<SimularParcelamentoEvento>().Wait();
         }
         
 
@@ -31,17 +32,28 @@ namespace SimulaParcela.Dominio.Command
             try
             {
                 var simulacao = _mapper.Map<Simulacao>(command);
-                //await _simulacaoRepositorio.Salvar(simulacao);
-                await _bus.Publish(new SimularParcelamentoEvento(simulacao));
+                //_simulacaoRepositorio.Salvar(simulacao).Wait();
+                simulacao.Id = 22;
+                await _bus.Publish(new SimularParcelamentoEvent(simulacao));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }           
         }
 
-        public async Task Handle(SimularParcelamentoEvento message)
+        public async Task Handle(SimularParcelamentoEvent message)
         {
+            try
+            {
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
     }
 }
