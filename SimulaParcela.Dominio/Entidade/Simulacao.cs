@@ -11,7 +11,7 @@ namespace SimulaParcela.Dominio.Entidade
         public decimal ValorTotalCompra { get; private set; }
         public int QuantidadeDeParcela { get; private set; }
         public DateTime DataDaCompra { get; private set; }
-        public IList<Parcela> Parcelas { get; }
+        public virtual IList<Parcela> Parcelas { get; private set; }
 
         public decimal ValorTotalAPagar
         {

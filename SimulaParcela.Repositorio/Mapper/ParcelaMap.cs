@@ -20,7 +20,8 @@ namespace SimulaParcela.Repositorio.Mapper
                    .IsRequired();
 
             builder.HasOne(p=> p.Simulacao)
-                   .WithMany(s=> s.Parcelas); 
+                   .WithMany(s=> s.Parcelas)
+                   .HasForeignKey(x => x.SimulacaoId); 
         }
     }
 }

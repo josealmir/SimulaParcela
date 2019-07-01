@@ -9,7 +9,7 @@ using Rebus.ServiceProvider;
 using Rebus.Transport.InMem;
 using SimulaParcela.Api.Configuration;
 using SimulaParcela.Dominio.Command;
-using SimulaParcela.Dominio.Envet;
+using SimulaParcela.Dominio.Event;
 using SimulaParcela.Dominio.IRepositorio;
 using SimulaParcela.Dominio.Notification;
 using SimulaParcela.Repositorio;
@@ -30,11 +30,7 @@ namespace SimulaParcela.Api
 
             services.AddAutoMapper();
             services.AutoRegisterHandlersFromAssemblyOf<SimulacaoCommandHandler>();
-
-            //services.AddRebus(configureRebus => configureRebus
-            //        .Transport(t => t.UseRabbitMq("amqp://127.0.0.1:5672", "AspNetCore"))
-            //        .Logging(l => l.ColoredConsole())
-            //        .Routing(r => r.TypeBased().MapFallback("AspNetCore")));            
+            
             var subscriberStore = new InMemorySubscriberStore();
             services.AddRebus(configure => configure
                     .Transport(t => t.UseInMemoryTransport(new InMemNetwork(), "Messages"))

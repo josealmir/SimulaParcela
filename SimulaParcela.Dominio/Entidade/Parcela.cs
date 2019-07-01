@@ -8,7 +8,8 @@ namespace SimulaParcela.Dominio.Entidade
         public decimal ValorDaParcela { get; private set; }
         public decimal ValorDoJurosAplicado { get; private set; }
         public DateTime DataDoVencimento { get; private set; }
-        public Simulacao Simulacao { get; private set; }
+        public int SimulacaoId { get; set;}
+        public virtual Simulacao Simulacao { get; private set; }
 
         protected Parcela() { }
         public Parcela(Simulacao simulacao)
@@ -16,7 +17,7 @@ namespace SimulaParcela.Dominio.Entidade
             if (simulacao == null)
                 throw new ArgumentNullException(nameof(simulacao));
 
-            this.Simulacao = simulacao;
+            this.SimulacaoId = simulacao.Id;
 
             this.CalcularParcela();
         }
@@ -29,7 +30,7 @@ namespace SimulaParcela.Dominio.Entidade
             if (dataReferencia == null)
                 throw new ArgumentNullException(nameof(dataReferencia));
 
-            this.Simulacao = simulacao;
+            this.SimulacaoId = simulacao.Id;
 
             this.CalcularParcela();
 
@@ -39,12 +40,10 @@ namespace SimulaParcela.Dominio.Entidade
         public void CalcularParcela()
         {
             var valorParcelaSemJuros = Simulacao.ValorTotalCompra / Simulacao.QuantidadeDeParcela;
-
-            this.ValorDaParcela =       Math.Round((valorParcelaSemJuros* Simulacao.ValorJuros / 100)+ valorParcelaSemJuros, 2);
+            this.ValorDaParcela = Math.Round((valorParcelaSemJuros* Simulacao.ValorJuros / 100) + valorParcelaSemJuros, 2);
             this.ValorDoJurosAplicado = Math.Round(this.ValorDaParcela - valorParcelaSemJuros, 4);
-            this.DataDoVencimento =     CalcularDataVencimento(Simulacao.DataDaCompra);
+            this.DataDoVencimento = CalcularDataVencimento(Simulacao.DataDaCompra);
         }
-
         public DateTime CalcularDataVencimento(DateTime dataReferencia)
                         => dataReferencia.AddMonths(1);
     }

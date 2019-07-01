@@ -17,7 +17,7 @@ namespace SimulaParcela.Repositorio
 
         public async Task SalvarAsync(Simulacao entidade)
         {
-            await _simulacaoContext.Simulacaos.AddAsync(entidade);
+            await _simulacaoContext.Simulacao.AddAsync(entidade);
             await _simulacaoContext.SaveChangesAsync();         
         }
         public async Task EditarAsync(Simulacao entidade)
@@ -27,13 +27,13 @@ namespace SimulaParcela.Repositorio
         }
         public async Task DeletarAsync(Simulacao entidade)
         {
-            _simulacaoContext.Simulacaos.Remove(entidade);
+            _simulacaoContext.Simulacao.Remove(entidade);
             await _simulacaoContext.SaveChangesAsync();
         }
 
         public async Task<IList<Simulacao>> GetAsync()
         {   
-            var list = await _simulacaoContext.Simulacaos.ToListAsync();    
+            var list = await _simulacaoContext.Simulacao.ToListAsync();    
             if (list.Any())
                 return list;
             return null;

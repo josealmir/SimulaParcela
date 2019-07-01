@@ -2,7 +2,7 @@
 using Rebus.Bus;
 using Rebus.Handlers;
 using SimulaParcela.Dominio.Entidade;
-using SimulaParcela.Dominio.Envet;
+using SimulaParcela.Dominio.Event;
 using SimulaParcela.Dominio.IRepositorio;
 using SimulaParcela.Dominio.Notification;
 using System;
@@ -35,11 +35,10 @@ namespace SimulaParcela.Dominio.Command
             try
             {
                 var simulacao = _mapper.Map<Simulacao>(command);
-                simulacao.CalcularParcelamento(simulacao);
                 _simulacaoRepositorio.SalvarAsync(simulacao).Wait();
                 await _bus.Publish(new SimularParcelamentoEvent(simulacao));
             }
-            catch (Exception ex)
+            catch (AggregateException)
             {
                 throw;
             }           
@@ -49,10 +48,11 @@ namespace SimulaParcela.Dominio.Command
         {
             try
             {
-                var parcelas = message.Simulacao.Parcelas;
-                await _parcelaRepositorio.SalvarAsync(parcelas);    
+                var id = message.Simulacao.Id;
+                var parcelas = message.Simulacao.CalcularParcelamento(message.Simulacao);                
+                //await _parcelaRepositorio.SalvarAsync(parcelas);    
             }
-            catch (Exception)
+            catch (AggregateException ex)
             {
                  throw; 
             }
