@@ -42,6 +42,7 @@ namespace SimulaParcela.Api
                     .Routing(r => r.TypeBased().MapAssemblyOf<SimulacaoCommandHandler>("Messages")));                            
             
             services.AddScoped<ISimulacaoRepositorio,SimulacaoRepositorio>();
+            services.AddScoped<IParcelaRepositorio,ParcelaRepositorio>();
             services.AddScoped<INotificacao,NotificacaoContext>();
             services.AddScoped<SimulacaoContext>();
             services.AddCors();     
@@ -68,8 +69,8 @@ namespace SimulaParcela.Api
                 x.AllowAnyMethod();
                 x.AllowAnyOrigin();
             });
-
-            app.UseHttpsRedirection();
+ 
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

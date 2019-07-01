@@ -14,15 +14,18 @@ namespace SimulaParcela.Dominio.Command
     {        
         private readonly IBus _bus;
         private readonly IMapper _mapper;
+        private readonly IParcelaRepositorio _parcelaRepositorio;
         private readonly ISimulacaoRepositorio _simulacaoRepositorio;
 
         public SimulacaoCommandHandler(IBus bus, 
                                        IMapper mapper,
                                        ISimulacaoRepositorio simulacaoRepositorio,
+                                       IParcelaRepositorio parcelaRepositorio,
                                        INotificacao notificacao)
         {
             _bus = bus;
             _mapper = mapper;
+            _parcelaRepositorio = parcelaRepositorio;
             _simulacaoRepositorio = simulacaoRepositorio;
         }
         
@@ -32,8 +35,8 @@ namespace SimulaParcela.Dominio.Command
             try
             {
                 var simulacao = _mapper.Map<Simulacao>(command);
-                //_simulacaoRepositorio.Salvar(simulacao).Wait();
-                simulacao.Id = 22;
+                simulacao.CalcularParcelamento(simulacao);
+                _simulacaoRepositorio.SalvarAsync(simulacao).Wait();
                 await _bus.Publish(new SimularParcelamentoEvent(simulacao));
             }
             catch (Exception ex)
@@ -46,14 +49,13 @@ namespace SimulaParcela.Dominio.Command
         {
             try
             {
-                
+                var parcelas = message.Simulacao.Parcelas;
+                await _parcelaRepositorio.SalvarAsync(parcelas);    
             }
             catch (Exception)
             {
-
-                throw;
+                 throw; 
             }
-            
         }
     }
 }

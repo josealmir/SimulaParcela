@@ -11,16 +11,17 @@ import { MatSelectModule,
          MatIconModule,
          MatCardModule,
          MatInputModule,
-  MatNativeDateModule
-} from '@angular/material';
+         MatNativeDateModule } from '@angular/material';
 
 import { SimulacaoService } from './simulacao.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    HttpClientModule,
     FormsModule,
     BrowserModule,
     MatIconModule,

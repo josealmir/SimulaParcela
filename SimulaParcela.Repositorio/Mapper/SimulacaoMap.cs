@@ -9,10 +9,20 @@ namespace SimulaParcela.Repositorio.Mapper
         public void Configure(EntityTypeBuilder<Simulacao> builder)
         {
             builder.HasKey(s=>s.Id);
-            builder.Property(s=>s.QuantidadeDeParcela).IsRequired();
-            builder.Property(s=>s.ValorJuros).IsRequired();
-            builder.Property(s=>s.ValorTotalCompra).IsRequired();
-            builder.Property(s=>s.DataDaCompra).IsRequired();
+            builder.Property(s => s.QuantidadeDeParcela)
+                   .IsRequired();
+
+            builder.Property(s => s.ValorJuros)
+                   .IsRequired();
+
+            builder.Property(s => s.ValorTotalCompra)
+                   .IsRequired();
+
+            builder.Property(s => s.DataDaCompra)
+                   .IsRequired();
+
+            builder.HasMany(s => s.Parcelas)
+                   .WithOne(p => p.Simulacao); 
         }
     }
 }

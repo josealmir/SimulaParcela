@@ -1,4 +1,5 @@
-﻿using SimulaParcela.Dominio.Entidade;
+﻿using Microsoft.EntityFrameworkCore;
+using SimulaParcela.Dominio.Entidade;
 using SimulaParcela.Dominio.IRepositorio;
 using System;
 using System.Collections.Generic;
@@ -14,23 +15,28 @@ namespace SimulaParcela.Repositorio
         public SimulacaoRepositorio(SimulacaoContext simulacaoContext)
                 => _simulacaoContext = simulacaoContext;
 
-        public async Task Salvar(Simulacao entidade)
+        public async Task SalvarAsync(Simulacao entidade)
         {
             await _simulacaoContext.Simulacaos.AddAsync(entidade);
             await _simulacaoContext.SaveChangesAsync();         
         }
-        public async Task Editar(Simulacao entidade)
+        public async Task EditarAsync(Simulacao entidade)
         {
             _simulacaoContext.Update(entidade);
             await _simulacaoContext.SaveChangesAsync();
         }
-        public async Task Deletar(Simulacao entidade)
+        public async Task DeletarAsync(Simulacao entidade)
         {
             _simulacaoContext.Simulacaos.Remove(entidade);
             await _simulacaoContext.SaveChangesAsync();
         }
 
-        public IList<Simulacao> Get()
-                => _simulacaoContext.Simulacaos.ToList();                
+        public async Task<IList<Simulacao>> GetAsync()
+        {   
+            var list = await _simulacaoContext.Simulacaos.ToListAsync();    
+            if (list.Any())
+                return list;
+            return null;
+        }                   
     }
 }

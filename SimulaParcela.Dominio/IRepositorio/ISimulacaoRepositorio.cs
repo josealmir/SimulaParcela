@@ -1,12 +1,14 @@
 ﻿using SimulaParcela.Dominio.Entidade;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SimulaParcela.Dominio.IRepositorio
 {
     public interface ISimulacaoRepositorio
     {
-        Task Salvar(Simulacao entidade);
-        Task Deletar(Simulacao entidade);
-        Task Editar(Simulacao entidade);
+        Task SalvarAsync(Simulacao entidade);
+        Task DeletarAsync(Simulacao entidade);
+        Task EditarAsync(Simulacao entidade);
+        Task<IList<Simulacao>> GetAsync();
     }
 }

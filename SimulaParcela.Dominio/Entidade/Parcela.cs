@@ -4,11 +4,13 @@ namespace SimulaParcela.Dominio.Entidade
 {
     public class Parcela
     {
+        public int Id{ get; set;}
         public decimal ValorDaParcela { get; private set; }
         public decimal ValorDoJurosAplicado { get; private set; }
         public DateTime DataDoVencimento { get; private set; }
         public Simulacao Simulacao { get; private set; }
 
+        protected Parcela() { }
         public Parcela(Simulacao simulacao)
         {
             if (simulacao == null)

@@ -1,8 +1,9 @@
 
 export class Simulacao {
-  valorTotalCompra: number;
+  id: number;
+  valorTotalCompra: string;
   valorJuros: number;
+  valorTotalAPagar: number;
   quantidadeDeParcela: number;
   dataDaCompra: Date = new Date();
-
 }

@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Rebus.Bus;
+﻿using Rebus.Bus;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using SimulaParcela.Dominio.Command;
 using SimulaParcela.Dominio.IRepositorio;
-using SimulaParcela.Repositorio;
-using System.Threading.Tasks;
 
 namespace SimulaParcela.Api.Controllers
 {
@@ -18,7 +17,6 @@ namespace SimulaParcela.Api.Controllers
         {
             _bus = bus;
             _simulacaoRepositorio = simulacaoRepositorio;
-
         }           
        
         [HttpPost]
@@ -43,8 +41,8 @@ namespace SimulaParcela.Api.Controllers
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            //var lista = _simulacaoRepositorio.Get();
-            return Ok();
+            var lista = await _simulacaoRepositorio.GetAsync();
+            return Ok(lista);
         }
     }
 }

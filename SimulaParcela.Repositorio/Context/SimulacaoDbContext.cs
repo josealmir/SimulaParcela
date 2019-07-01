@@ -7,10 +7,12 @@ namespace SimulaParcela.Repositorio
     public class SimulacaoContext : DbContext
     {
         public DbSet<Simulacao> Simulacaos { get; set;}
+        public DbSet<Parcela> Parcela { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new SimulacaoMap());
+            modelBuilder.ApplyConfiguration(new ParcelaMap());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
