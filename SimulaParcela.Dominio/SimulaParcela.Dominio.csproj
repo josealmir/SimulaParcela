@@ -9,4 +9,8 @@
     <PackageReference Include="Rebus" Version="5.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SimulaParcela.Domain.Core\SimulaParcela.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>

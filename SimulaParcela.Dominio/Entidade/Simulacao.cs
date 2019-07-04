@@ -1,12 +1,11 @@
-﻿using System;
+﻿using SimulaParcela.Domain.Core;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SimulaParcela.Dominio.Entidade
 {
-    public class Simulacao
+    public class Simulacao : Entity
     {
-        public int Id { get; set; }
         public decimal ValorJuros { get; private set; }
         public decimal ValorTotalCompra { get; private set; }
         public int QuantidadeDeParcela { get; private set; }

@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimulaParcela.Domain.Core.Interface;
 using SimulaParcela.Dominio.Entidade;
 using SimulaParcela.Dominio.IRepositorio;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SimulaParcela.Repositorio

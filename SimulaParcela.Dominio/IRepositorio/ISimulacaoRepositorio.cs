@@ -6,9 +6,6 @@ namespace SimulaParcela.Dominio.IRepositorio
 {
     public interface ISimulacaoRepositorio
     {
-        Task SalvarAsync(Simulacao entidade);
-        Task DeletarAsync(Simulacao entidade);
-        Task EditarAsync(Simulacao entidade);
-        Task<IList<Simulacao>> GetAsync();
+
     }
 }

@@ -1,11 +1,11 @@
-﻿namespace SimulaParcela.Dominio.Entidade
+﻿namespace SimulaParcela.Domain.Core
 {
-    public sealed class Notificacao
+    public sealed class Notification
     {
         public bool Erro { get; private set ; }
         public string MensagemErro { get; set; }
 
-        public Notificacao(string mensagemErro)
+        public Notification(string mensagemErro)
         {
             if (!Erro)
                  Erro = true;

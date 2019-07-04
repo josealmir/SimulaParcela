@@ -1,7 +1,4 @@
 ﻿using SimulaParcela.Domain.Core.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SimulaParcela.Domain.Core
 {

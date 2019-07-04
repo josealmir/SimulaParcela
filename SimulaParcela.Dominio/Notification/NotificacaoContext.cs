@@ -1,10 +1,11 @@
-﻿using SimulaParcela.Dominio.Entidade;
+﻿using SimulaParcela.Domain.Core;
+using SimulaParcela.Domain.Core.Interface;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SimulaParcela.Dominio.Notification
 {
-    public class NotificacaoContext : INotificacao
+    public class NotificacaoContext : INotification
     {
         private IList<string> message;
 
@@ -19,7 +20,7 @@ namespace SimulaParcela.Dominio.Notification
             this.message.Add(message);
         }
 
-        public Notificacao GetNotificacoes()
-            => new Notificacao(string.Join(',', message));
+        public Notification GetNotificacoes()
+            => new Domain.Core.Notification(string.Join(',', message));
     }
 }

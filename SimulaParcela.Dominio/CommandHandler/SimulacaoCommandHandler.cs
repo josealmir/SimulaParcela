@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+﻿using System;
 using Rebus.Bus;
+using AutoMapper;
 using Rebus.Handlers;
-using SimulaParcela.Dominio.Entidade;
+using System.Threading.Tasks;
 using SimulaParcela.Dominio.Event;
 using SimulaParcela.Dominio.IRepositorio;
-using SimulaParcela.Dominio.Notification;
-using System;
-using System.Threading.Tasks;
+using SimulaParcela.Domain.Core.Interface;
+using SimulaParcela.Dominio.Entidade;
 
 namespace SimulaParcela.Dominio.Command
 {
@@ -14,17 +14,20 @@ namespace SimulaParcela.Dominio.Command
     {        
         private readonly IBus _bus;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IParcelaRepositorio _parcelaRepositorio;
         private readonly ISimulacaoRepositorio _simulacaoRepositorio;
 
         public SimulacaoCommandHandler(IBus bus, 
                                        IMapper mapper,
+                                       IUnitOfWork unitOfWork,
                                        ISimulacaoRepositorio simulacaoRepositorio,
                                        IParcelaRepositorio parcelaRepositorio,
-                                       INotificacao notificacao)
+                                       INotification notificacao)
         {
             _bus = bus;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
             _parcelaRepositorio = parcelaRepositorio;
             _simulacaoRepositorio = simulacaoRepositorio;
         }
@@ -35,13 +38,16 @@ namespace SimulaParcela.Dominio.Command
             try
             {
                 var simulacao = _mapper.Map<Simulacao>(command);
-                _simulacaoRepositorio.SalvarAsync(simulacao).Wait();
+                await _simulacaoRepositorio.SalvarAsync(simulacao);
                 await _bus.Publish(new SimularParcelamentoEvent(simulacao));
+
             }
             catch (AggregateException)
             {
                 throw;
-            }           
+            }
+
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task Handle(SimularParcelamentoEvent message)
