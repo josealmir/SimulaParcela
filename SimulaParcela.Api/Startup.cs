@@ -40,7 +40,7 @@ namespace SimulaParcela.Api
             services.AddScoped<ISimulacaoRepositorio,SimulacaoRepositorio>();
             services.AddScoped<IParcelaRepositorio,ParcelaRepositorio>();
             services.AddScoped<INotificacao,NotificacaoContext>();
-            services.AddScoped<SimulacaoContext>();
+            services.AddScoped<DataContext>();
             services.AddCors();     
             services.AddControllers()
                     .AddNewtonsoftJson();

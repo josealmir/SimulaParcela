@@ -9,7 +9,7 @@ using SimulaParcela.Repositorio;
 
 namespace SimulaParcela.Repositorio.Migrations
 {
-    [DbContext(typeof(SimulacaoContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20190701155654_init")]
     partial class init
     {

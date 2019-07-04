@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
  <ItemGroup>
+   <ProjectReference Include="..\SimulaParcela.Domain.Core\SimulaParcela.Domain.Core.csproj" />
    <ProjectReference Include="..\SimulaParcela.Dominio\SimulaParcela.Dominio.csproj" />
  </ItemGroup>
 

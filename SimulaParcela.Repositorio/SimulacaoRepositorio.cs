@@ -11,8 +11,8 @@ namespace SimulaParcela.Repositorio
     public class SimulacaoRepositorio : ISimulacaoRepositorio
     {
            
-        private readonly SimulacaoContext _simulacaoContext; 
-        public SimulacaoRepositorio(SimulacaoContext simulacaoContext)
+        private readonly DataContext _simulacaoContext; 
+        public SimulacaoRepositorio(DataContext simulacaoContext)
                 => _simulacaoContext = simulacaoContext;
 
         public async Task SalvarAsync(Simulacao entidade)

@@ -8,7 +8,7 @@ using SimulaParcela.Repositorio;
 
 namespace SimulaParcela.Repositorio.Migrations
 {
-    [DbContext(typeof(SimulacaoContext))]
+    [DbContext(typeof(DataContext))]
     partial class SimulacaoContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

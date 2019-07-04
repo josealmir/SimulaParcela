@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SimulaParcela.Domain.Core.Interface;
 using SimulaParcela.Dominio.Entidade;
 using SimulaParcela.Dominio.IRepositorio;
 using System;
@@ -12,13 +13,13 @@ namespace SimulaParcela.Repositorio
     {
            
         private readonly SimulacaoContext _ParcelaContext; 
-        public ParcelaRepositorio(SimulacaoContext ParcelaContext)
+
+        public ParcelaRepositorio(DataContext ParcelaContext)
                 => _ParcelaContext = ParcelaContext;
 
         public async Task SalvarAsync(Parcela entidade)
         {
             await _ParcelaContext.Parcela.AddAsync(entidade);
-            await _ParcelaContext.SaveChangesAsync();         
         }
 
         public async Task SalvarAsync(IList<Parcela> lista)

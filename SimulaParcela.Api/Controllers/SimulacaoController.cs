@@ -26,18 +26,6 @@ namespace SimulaParcela.Api.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public void Put()
-        {
-
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-
-        }
-
         [HttpGet]
         public async Task<ActionResult> Get()
         {
