@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace SimulaParcela.Dominio.Entidade
+namespace SimulaParcela.Dominio.Model
 {
     public class Simulacao : Entity
     {
-        public decimal ValorJuros { get; private set; }
+        public int ValorJuros { get; private set; }
         public decimal ValorTotalCompra { get; private set; }
         public int QuantidadeDeParcela { get; private set; }
         public DateTime DataDaCompra { get; private set; }
@@ -25,7 +25,7 @@ namespace SimulaParcela.Dominio.Entidade
             CalcularParcelamento(this);
         }
 
-        public Simulacao(int id, decimal valorTotalCompra, decimal valorJuros, int quantidadeDeParcela, DateTime dataDaCompra)
+        public Simulacao(int id, decimal valorTotalCompra, int valorJuros, int quantidadeDeParcela, DateTime dataDaCompra)
         {
            Id = id;
            ValorJuros = valorJuros;

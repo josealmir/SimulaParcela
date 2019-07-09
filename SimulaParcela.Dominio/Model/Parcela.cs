@@ -1,10 +1,10 @@
-﻿using System;
+﻿using SimulaParcela.Domain.Core;
+using System;
 
-namespace SimulaParcela.Dominio.Entidade
+namespace SimulaParcela.Dominio.Model
 {
-    public class Parcela
+    public class Parcela : Entity
     {
-        public int Id{ get; set;}
         public decimal ValorDaParcela { get; private set; }
         public decimal ValorDoJurosAplicado { get; private set; }
         public DateTime DataDoVencimento { get; private set; }

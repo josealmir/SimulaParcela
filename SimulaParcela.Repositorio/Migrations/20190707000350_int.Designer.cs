@@ -10,8 +10,8 @@ using SimulaParcela.Repositorio;
 namespace SimulaParcela.Repositorio.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190701155654_init")]
-    partial class init
+    [Migration("20190707000350_int")]
+    partial class @int
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,7 +52,7 @@ namespace SimulaParcela.Repositorio.Migrations
 
                     b.Property<int>("QuantidadeDeParcela");
 
-                    b.Property<decimal>("ValorJuros");
+                    b.Property<int>("ValorJuros");
 
                     b.Property<decimal>("ValorTotalCompra");
 

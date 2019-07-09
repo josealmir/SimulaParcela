@@ -4,9 +4,9 @@ using AutoMapper;
 using Rebus.Handlers;
 using System.Threading.Tasks;
 using SimulaParcela.Dominio.Event;
-using SimulaParcela.Dominio.IRepositorio;
+using SimulaParcela.Dominio.IRepository;
 using SimulaParcela.Domain.Core.Interface;
-using SimulaParcela.Dominio.Entidade;
+using SimulaParcela.Dominio.Model;
 
 namespace SimulaParcela.Dominio.Command
 {
@@ -15,19 +15,21 @@ namespace SimulaParcela.Dominio.Command
         private readonly IBus _bus;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IParcelaRepositorio _parcelaRepositorio;
-        private readonly ISimulacaoRepositorio _simulacaoRepositorio;
+        private readonly INotification _notification;
+        private readonly IParcelaRepository _parcelaRepositorio;
+        private readonly ISimulacaoRepository _simulacaoRepositorio;
 
         public SimulacaoCommandHandler(IBus bus, 
                                        IMapper mapper,
                                        IUnitOfWork unitOfWork,
-                                       ISimulacaoRepositorio simulacaoRepositorio,
-                                       IParcelaRepositorio parcelaRepositorio,
+                                       ISimulacaoRepository simulacaoRepositorio,
+                                       IParcelaRepository parcelaRepositorio,
                                        INotification notificacao)
         {
             _bus = bus;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
+            _notification = notificacao;
             _parcelaRepositorio = parcelaRepositorio;
             _simulacaoRepositorio = simulacaoRepositorio;
         }
@@ -38,12 +40,13 @@ namespace SimulaParcela.Dominio.Command
             try
             {
                 var simulacao = _mapper.Map<Simulacao>(command);
-                await _simulacaoRepositorio.SalvarAsync(simulacao);
+                await _simulacaoRepositorio.SaveAsync(simulacao);
                 await _bus.Publish(new SimularParcelamentoEvent(simulacao));
-
+                throw new AggregateException("teste....");                                                            
             }
-            catch (AggregateException)
+            catch (AggregateException ex)
             {
+                _notification.AddNotificacao(ex.Message);
                 throw;
             }
 
@@ -56,11 +59,11 @@ namespace SimulaParcela.Dominio.Command
             {
                 var id = message.Simulacao.Id;
                 var parcelas = message.Simulacao.CalcularParcelamento(message.Simulacao);                
-                //await _parcelaRepositorio.SalvarAsync(parcelas);    
+                await _parcelaRepositorio.SaveAsync(null);
             }
             catch (AggregateException ex)
             {
-                 throw; 
+                throw; 
             }
         }
     }

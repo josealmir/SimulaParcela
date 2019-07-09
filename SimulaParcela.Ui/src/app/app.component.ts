@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
                                 'dataDaCompra',
                                 'valorJuros',
                                 'valorTotalCompra',
-                                'valorTotalAPagar'];
+                                'valorTotalAPagar',
+                                'acao'];
 
   constructor(private simulacaoService: SimulacaoService,
               private formBuilder: FormBuilder)

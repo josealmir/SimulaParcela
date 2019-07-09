@@ -3,16 +3,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Rebus.Persistence.InMem;
-using Rebus.Routing.TypeBased;
 using Rebus.ServiceProvider;
-using Rebus.Transport.InMem;
 using SimulaParcela.Api.Configuration;
+using SimulaParcela.Domain.Core.Interface;
 using SimulaParcela.Dominio.Command;
 using SimulaParcela.Dominio.Event;
-using SimulaParcela.Dominio.IRepositorio;
-using SimulaParcela.Dominio.Notification;
+using SimulaParcela.Dominio.Infra;
+using SimulaParcela.Dominio.IRepository;
 using SimulaParcela.Repositorio;
+using SimulaParcela.Repositorio.Context;
 
 namespace SimulaParcela.Api
 {
@@ -27,23 +26,18 @@ namespace SimulaParcela.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AutoRegisterHandlersFromAssemblyOf<RegistrarNovaSimulacaoCommand>();
             services.AddAutoMapper();
-            services.AutoRegisterHandlersFromAssemblyOf<SimulacaoCommandHandler>();
-            
-            var subscriberStore = new InMemorySubscriberStore();
-            services.AddRebus(configure => configure
-                    .Transport(t => t.UseInMemoryTransport(new InMemNetwork(), "Messages"))
-                    .Subscriptions(s => s.StoreInMemory(subscriberStore))
-                    .Routing(r => r.TypeBased().MapAssemblyOf<SimulacaoCommandHandler>("Messages")));                            
-            
-            services.AddScoped<ISimulacaoRepositorio,SimulacaoRepositorio>();
-            services.AddScoped<IParcelaRepositorio,ParcelaRepositorio>();
-            services.AddScoped<INotificacao,NotificacaoContext>();
+            services.AddRebus();
+            services.AddScoped<ISimulacaoRepository,SimulacaoRepository>();
+            services.AddScoped<IParcelaRepository,ParcelaRepository>();
+            services.AddScoped<INotification , NotificationContext>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddScoped<DataContext>();
-            services.AddCors();     
+            services.AddCors();
             services.AddControllers()
                     .AddNewtonsoftJson();
+                    //.AddFluentValidation(f =>f.RegisterValidatorsFromAssemblyContaining<SimualcaoValidator>());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

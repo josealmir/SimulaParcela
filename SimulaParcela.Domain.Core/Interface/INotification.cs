@@ -5,6 +5,6 @@ namespace SimulaParcela.Domain.Core.Interface
     {
         bool HasNotificacoes { get; }
         void AddNotificacao(string message);
-        Notification GetNotificacoes();
+        Notification GetNotification();
     }
 }

@@ -9,7 +9,7 @@ using SimulaParcela.Repositorio;
 namespace SimulaParcela.Repositorio.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class SimulacaoContextModelSnapshot : ModelSnapshot
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +50,7 @@ namespace SimulaParcela.Repositorio.Migrations
 
                     b.Property<int>("QuantidadeDeParcela");
 
-                    b.Property<decimal>("ValorJuros");
+                    b.Property<int>("ValorJuros");
 
                     b.Property<decimal>("ValorTotalCompra");
 

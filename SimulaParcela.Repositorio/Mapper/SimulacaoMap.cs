@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SimulaParcela.Dominio.Entidade;
+using SimulaParcela.Dominio.Model;
 
 namespace SimulaParcela.Repositorio.Mapper
 {

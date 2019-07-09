@@ -6,6 +6,6 @@ namespace SimulaParcela.Domain.Core.Interface
 {
     public interface IRepositoryRead<T> where T : IEntity
     {
-          Task<IList<T>> GetAlAsync();
+          Task<IList<T>> GetAsync();
     }
 }

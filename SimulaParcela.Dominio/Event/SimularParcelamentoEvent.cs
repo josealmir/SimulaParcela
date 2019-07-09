@@ -1,4 +1,4 @@
-﻿using SimulaParcela.Dominio.Entidade;
+﻿using SimulaParcela.Dominio.Model;
 
 namespace SimulaParcela.Dominio.Event
 {

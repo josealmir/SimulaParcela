@@ -1,6 +1,6 @@
 ﻿namespace SimulaParcela.Domain.Core
 {
-    public sealed class Notification
+    public class Notification
     {
         public bool Erro { get; private set ; }
         public string MensagemErro { get; set; }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimulaParcela.Dominio.Entidade;
+using SimulaParcela.Dominio.Model;
 using SimulaParcela.Repositorio.Mapper;
 
 namespace SimulaParcela.Repositorio

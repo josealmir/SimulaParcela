@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SimulaParcela.Repositorio.Migrations
 {
-    public partial class init : Migration
+    public partial class @int : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace SimulaParcela.Repositorio.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ValorJuros = table.Column<decimal>(nullable: false),
+                    ValorJuros = table.Column<int>(nullable: false),
                     ValorTotalCompra = table.Column<decimal>(nullable: false),
                     QuantidadeDeParcela = table.Column<int>(nullable: false),
                     DataDaCompra = table.Column<DateTime>(nullable: false)

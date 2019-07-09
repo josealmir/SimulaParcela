@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SimulaParcela.Dominio.Command;
-using SimulaParcela.Dominio.IRepositorio;
+using SimulaParcela.Dominio.IRepository;
+using SimulaParcela.Domain.Core.Interface;
 
 namespace SimulaParcela.Api.Controllers
 {
@@ -10,19 +11,27 @@ namespace SimulaParcela.Api.Controllers
     [ApiController]
     public class SimulacaoController : ControllerBase
     {
-        private ISimulacaoRepositorio _simulacaoRepositorio;
         private readonly IBus _bus;
-
-        public SimulacaoController(IBus bus, ISimulacaoRepositorio simulacaoRepositorio)
+        private readonly INotification _notification;
+        private readonly ISimulacaoRepository _simulacaoRepositorio;
+        
+        public SimulacaoController(IBus bus,
+                                   INotification notification, 
+                                   ISimulacaoRepository simulacaoRepositorio)
         {
             _bus = bus;
+            _notification = notification;
             _simulacaoRepositorio = simulacaoRepositorio;
         }           
        
         [HttpPost]
         public async Task<ActionResult> Post(RegistrarNovaSimulacaoCommand model)
         {
-            await _bus.Send(model);          
+            await _bus.Send(model);
+
+            if (_notification.HasNotificacoes)
+                return BadRequest(_notification.GetNotification());
+
             return Ok();
         }
 
