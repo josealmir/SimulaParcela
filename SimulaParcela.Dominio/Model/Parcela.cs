@@ -18,8 +18,7 @@ namespace SimulaParcela.Dominio.Model
                 throw new ArgumentNullException(nameof(simulacao));
 
             this.SimulacaoId = simulacao.Id;
-
-            this.CalcularParcela();
+            CalcularParcela(simulacao.QuantidadeDeParcela,simulacao.ValorJuros,simulacao.ValorTotalCompra,simulacao.DataDaCompra);
         }
 
         public Parcela(Simulacao simulacao,DateTime dataReferencia)
@@ -31,20 +30,23 @@ namespace SimulaParcela.Dominio.Model
                 throw new ArgumentNullException(nameof(dataReferencia));
 
             this.SimulacaoId = simulacao.Id;
-
-            this.CalcularParcela();
-
-            this.DataDoVencimento = this.CalcularDataVencimento(dataReferencia);
+            this.DataDoVencimento = CalcularDataVencimento(dataReferencia);
         }
 
-        public void CalcularParcela()
-        {
-            var valorParcelaSemJuros = Simulacao.ValorTotalCompra / Simulacao.QuantidadeDeParcela;
-            this.ValorDaParcela = Math.Round((valorParcelaSemJuros* Simulacao.ValorJuros / 100) + valorParcelaSemJuros, 2);
-            this.ValorDoJurosAplicado = Math.Round(this.ValorDaParcela - valorParcelaSemJuros, 4);
-            this.DataDoVencimento = CalcularDataVencimento(Simulacao.DataDaCompra);
-        }
         public DateTime CalcularDataVencimento(DateTime dataReferencia)
                         => dataReferencia.AddMonths(1);
+
+        public Parcela CalcularParcela(Simulacao simulacao)
+        {
+            return CalcularParcela(simulacao.QuantidadeDeParcela,simulacao.ValorJuros,simulacao.ValorTotalCompra,simulacao.DataDaCompra);
+        }                        
+        public Parcela CalcularParcela(int quantidadeDeParcela,int valorJuros,decimal valorTotalDaCompra,DateTime dataReferencia)
+        {
+            var valorParcelaSemJuros = valorTotalDaCompra / quantidadeDeParcela;
+            this.ValorDaParcela = Math.Round((valorParcelaSemJuros* valorJuros / 100) + valorParcelaSemJuros, 2);
+            this.ValorDoJurosAplicado = Math.Round(this.ValorDaParcela - valorParcelaSemJuros, 4);
+            this.DataDoVencimento = CalcularDataVencimento(Simulacao.DataDaCompra);
+            return this;
+        }
     }
 }

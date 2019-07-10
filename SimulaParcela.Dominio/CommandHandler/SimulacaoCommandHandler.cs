@@ -56,9 +56,10 @@ namespace SimulaParcela.Dominio.Command
             try
             {
                 var id = message.Simulacao.Id;
-                var parcelas = message.Simulacao.CalcularParcelamento(message.Simulacao);                 
+                var parcelas = message.Simulacao
                 foreach (var item in parcelas)
                 {
+                    item.Id = id;
                     await _parcelaRepositorio.SaveAsync(item);    
                 } 
             }

@@ -14,8 +14,12 @@ namespace SimulaParcela.Repositorio
 
         protected DataContext _dataContext;
 
-        public Repository(DataContext dataContext)
-                        => _dataContext = dataContext;
+        public Repository(DataContext dataContext)    
+        {            
+            _dataContext = dataContext;   
+            _dataContext.Set<T>();
+        }
+                     
 
         #region read      
 
