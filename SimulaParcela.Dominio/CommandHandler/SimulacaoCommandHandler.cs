@@ -42,14 +42,12 @@ namespace SimulaParcela.Dominio.Command
                 var simulacao = _mapper.Map<Simulacao>(command);
                 await _simulacaoRepositorio.SaveAsync(simulacao);
                 await _bus.Publish(new SimularParcelamentoEvent(simulacao));
-                throw new AggregateException("teste....");                                                            
             }
             catch (AggregateException ex)
             {
                 _notification.AddNotificacao(ex.Message);
                 throw;
             }
-
             await _unitOfWork.CommitAsync();
         }
 
@@ -58,13 +56,17 @@ namespace SimulaParcela.Dominio.Command
             try
             {
                 var id = message.Simulacao.Id;
-                var parcelas = message.Simulacao.CalcularParcelamento(message.Simulacao);                
-                await _parcelaRepositorio.SaveAsync(null);
+                var parcelas = message.Simulacao.CalcularParcelamento(message.Simulacao);                 
+                foreach (var item in parcelas)
+                {
+                    await _parcelaRepositorio.SaveAsync(item);    
+                } 
             }
             catch (AggregateException ex)
             {
                 throw; 
             }
+            await _unitOfWork.CommitAsync();
         }
     }
 }
