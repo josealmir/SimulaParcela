@@ -7,6 +7,7 @@ using SimulaParcela.Dominio.Event;
 using SimulaParcela.Dominio.IRepository;
 using SimulaParcela.Domain.Core.Interface;
 using SimulaParcela.Dominio.Model;
+using System.Collections.Generic;
 
 namespace SimulaParcela.Dominio.Command
 {
@@ -55,13 +56,22 @@ namespace SimulaParcela.Dominio.Command
         {
             try
             {
-                var id = message.Simulacao.Id;
-                var parcelas = message.Simulacao
-                foreach (var item in parcelas)
+                var parcela = new Parcela(message.Simulacao);
+                var lista = new List<Parcela>();
+                lista.Add(parcela);
+                var dataReferencia = parcela.DataDoVencimento;
+                
+                for (int i = 1; i < message.Simulacao.QuantidadeDeParcela; i++)
                 {
-                    item.Id = id;
-                    await _parcelaRepositorio.SaveAsync(item);    
-                } 
+                    parcela.CalcularDataVencimento(dataReferencia);
+                    dataReferencia = parcela.DataDoVencimento;
+                    lista.Add(parcela);
+                }
+                //foreach (var item in parcelas)
+                //{
+                //    item.Id = id;
+                //    await _parcelaRepositorio.SaveAsync(item);    
+                //} 
             }
             catch (AggregateException ex)
             {
