@@ -7,15 +7,17 @@ namespace SimulaParcela.Repositorio.Context
     {
 
         private DataContext _dataContext;
+      
         public UnitOfWork(DataContext dataContext)
         {
             _dataContext = dataContext;
         }
+   
         public void Commit()
                 => _dataContext.SaveChanges();
 
-        public Task CommitAsync()
-               => _dataContext.SaveChangesAsync();
-
+        public async Task CommitAsync()
+               => await _dataContext.SaveChangesAsync();
+        
     }
 }

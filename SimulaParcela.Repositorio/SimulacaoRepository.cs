@@ -5,10 +5,8 @@ namespace SimulaParcela.Repositorio
 {
     public class SimulacaoRepository : Repository<Simulacao> , ISimulacaoRepository
     {
-           
         public SimulacaoRepository(DataContext dataContext)
                 : base(dataContext)
         { }
- 
     }
 }

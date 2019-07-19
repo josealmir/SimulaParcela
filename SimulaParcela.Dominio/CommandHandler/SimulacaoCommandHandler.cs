@@ -23,9 +23,9 @@ namespace SimulaParcela.Dominio.Command
         public SimulacaoCommandHandler(IBus bus, 
                                        IMapper mapper,
                                        IUnitOfWork unitOfWork,
-                                       ISimulacaoRepository simulacaoRepositorio,
+                                       INotification notificacao,
                                        IParcelaRepository parcelaRepositorio,
-                                       INotification notificacao)
+                                       ISimulacaoRepository simulacaoRepositorio)
         {
             _bus = bus;
             _mapper = mapper;
@@ -42,14 +42,14 @@ namespace SimulaParcela.Dominio.Command
             {
                 var simulacao = _mapper.Map<Simulacao>(command);
                 await _simulacaoRepositorio.SaveAsync(simulacao);
+                await _unitOfWork.CommitAsync();
                 await _bus.Publish(new SimularParcelamentoEvent(simulacao));
             }
             catch (AggregateException ex)
             {
                 _notification.AddNotificacao(ex.Message);
                 throw;
-            }
-            await _unitOfWork.CommitAsync();
+            }            
         }
 
         public async Task Handle(SimularParcelamentoEvent message)
@@ -57,27 +57,21 @@ namespace SimulaParcela.Dominio.Command
             try
             {
                 var parcela = new Parcela(message.Simulacao);
-                var lista = new List<Parcela>();
-                lista.Add(parcela);
                 var dataReferencia = parcela.DataDoVencimento;
-                
-                for (int i = 1; i < message.Simulacao.QuantidadeDeParcela; i++)
-                {
-                    parcela.CalcularDataVencimento(dataReferencia);
-                    dataReferencia = parcela.DataDoVencimento;
+                var lista = new List<Parcela>();
+                for (int i = 1; i <= message.Simulacao.QuantidadeDeParcela; i++)
+                {                
+                    dataReferencia = parcela.CalcularDataVencimento(dataReferencia);
                     lista.Add(parcela);
                 }
-                //foreach (var item in parcelas)
-                //{
-                //    item.Id = id;
-                //    await _parcelaRepositorio.SaveAsync(item);    
-                //} 
+                await _parcelaRepositorio.SaveAsync(lista);         
+                await _unitOfWork.CommitAsync();
             }
             catch (AggregateException ex)
             {
                 throw; 
             }
-            await _unitOfWork.CommitAsync();
+
         }
     }
 }

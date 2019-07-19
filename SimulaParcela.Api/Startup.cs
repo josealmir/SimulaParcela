@@ -37,7 +37,6 @@ namespace SimulaParcela.Api
             services.AddCors();
             services.AddControllers()
                     .AddNewtonsoftJson();
-                    //.AddFluentValidation(f =>f.RegisterValidatorsFromAssemblyContaining<SimualcaoValidator>());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
