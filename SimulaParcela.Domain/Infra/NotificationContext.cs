@@ -3,7 +3,7 @@ using SimulaParcela.Domain.Core.Interface;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SimulaParcela.Dominio.Infra
+namespace SimulaParcela.Domain.Infra
 {
     public class NotificationContext : INotification
     {

@@ -1,6 +1,6 @@
-﻿using SimulaParcela.Dominio.Model;
+﻿using SimulaParcela.Domain.Model;
 
-namespace SimulaParcela.Dominio.Event
+namespace SimulaParcela.Domain.Event
 {
     public class SimularParcelamentoEvent
     {

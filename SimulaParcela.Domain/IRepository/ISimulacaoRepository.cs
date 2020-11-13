@@ -1,7 +1,7 @@
 ﻿using SimulaParcela.Domain.Core.Interface;
-using SimulaParcela.Dominio.Model;
+using SimulaParcela.Domain.Model;
 
-namespace SimulaParcela.Dominio.IRepository
+namespace SimulaParcela.Domain.IRepository
 {
     public interface ISimulacaoRepository : IRepositoryRead<Simulacao>, IRepositoryWrite<Simulacao>
     {

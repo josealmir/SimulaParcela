@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulaParcela.Dominio", "SimulaParcela.Dominio\SimulaParcela.Dominio.csproj", "{FB727223-E7A7-42A9-B78B-36263448E7B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulaParcela.Domain", "SimulaParcela.Domain\SimulaParcela.Domain.csproj", "{FB727223-E7A7-42A9-B78B-36263448E7B3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulaParcela.Repositorio", "SimulaParcela.Repositorio\SimulaParcela.Repositorio.csproj", "{2CBFB2D9-2D09-40F0-BCD0-F5BF349A550B}"
 EndProject

@@ -1,6 +1,6 @@
 using AutoMapper;
-using SimulaParcela.Dominio.Command;
-using SimulaParcela.Dominio.Model;
+using SimulaParcela.Domain.Command;
+using SimulaParcela.Domain.Model;
 
 namespace SimulaParcela.Api.Configuration
 {

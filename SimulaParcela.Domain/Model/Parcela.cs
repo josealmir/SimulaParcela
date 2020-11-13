@@ -1,7 +1,7 @@
 ﻿using SimulaParcela.Domain.Core;
 using System;
 
-namespace SimulaParcela.Dominio.Model
+namespace SimulaParcela.Domain.Model
 {
     public class Parcela : Entity
     {

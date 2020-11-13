@@ -21,7 +21,7 @@ namespace SimulaParcela.Repositorio.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SimulaParcela.Dominio.Entidade.Parcela", b =>
+            modelBuilder.Entity("SimulaParcela.Domain.Entidade.Parcela", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace SimulaParcela.Repositorio.Migrations
                     b.ToTable("Parcela");
                 });
 
-            modelBuilder.Entity("SimulaParcela.Dominio.Entidade.Simulacao", b =>
+            modelBuilder.Entity("SimulaParcela.Domain.Entidade.Simulacao", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,9 +61,9 @@ namespace SimulaParcela.Repositorio.Migrations
                     b.ToTable("Simulacao");
                 });
 
-            modelBuilder.Entity("SimulaParcela.Dominio.Entidade.Parcela", b =>
+            modelBuilder.Entity("SimulaParcela.Domain.Entidade.Parcela", b =>
                 {
-                    b.HasOne("SimulaParcela.Dominio.Entidade.Simulacao", "Simulacao")
+                    b.HasOne("SimulaParcela.Domain.Entidade.Simulacao", "Simulacao")
                         .WithMany("Parcelas")
                         .HasForeignKey("SimulacaoId")
                         .OnDelete(DeleteBehavior.Cascade);

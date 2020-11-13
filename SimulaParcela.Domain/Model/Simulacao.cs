@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SimulaParcela.Dominio.Model
+namespace SimulaParcela.Domain.Model
 {
     public class Simulacao : Entity
     {

@@ -3,13 +3,13 @@ using Rebus.Bus;
 using AutoMapper;
 using Rebus.Handlers;
 using System.Threading.Tasks;
-using SimulaParcela.Dominio.Event;
-using SimulaParcela.Dominio.IRepository;
+using SimulaParcela.Domain.Event;
+using SimulaParcela.Domain.IRepository;
 using SimulaParcela.Domain.Core.Interface;
-using SimulaParcela.Dominio.Model;
+using SimulaParcela.Domain.Model;
 using System.Collections.Generic;
 
-namespace SimulaParcela.Dominio.Command
+namespace SimulaParcela.Domain.Command
 {
     public class SimulacaoCommandHandler : IHandleMessages<RegistrarNovaSimulacaoCommand>, IHandleMessages<SimularParcelamentoEvent>
     {        

@@ -6,10 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Rebus.ServiceProvider;
 using SimulaParcela.Api.Configuration;
 using SimulaParcela.Domain.Core.Interface;
-using SimulaParcela.Dominio.Command;
-using SimulaParcela.Dominio.Event;
-using SimulaParcela.Dominio.Infra;
-using SimulaParcela.Dominio.IRepository;
+using SimulaParcela.Domain.Command;
+using SimulaParcela.Domain.Event;
+using SimulaParcela.Domain.Infra;
+using SimulaParcela.Domain.IRepository;
 using SimulaParcela.Repositorio;
 using SimulaParcela.Repositorio.Context;
 

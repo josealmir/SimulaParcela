@@ -1,8 +1,8 @@
 ﻿using Rebus.Bus;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SimulaParcela.Dominio.Command;
-using SimulaParcela.Dominio.IRepository;
+using SimulaParcela.Domain.Command;
+using SimulaParcela.Domain.IRepository;
 using SimulaParcela.Domain.Core.Interface;
 
 namespace SimulaParcela.Api.Controllers

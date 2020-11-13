@@ -1,5 +1,5 @@
-﻿using SimulaParcela.Dominio.Model;
-using SimulaParcela.Dominio.IRepository;
+﻿using SimulaParcela.Domain.Model;
+using SimulaParcela.Domain.IRepository;
 
 namespace SimulaParcela.Repositorio
 {

@@ -1,5 +1,5 @@
 using AutoMapper;
-using SimulaParcela.Dominio;
+using SimulaParcela.Domain;
 
 namespace SimulaParcela.Api.Configuration
 {

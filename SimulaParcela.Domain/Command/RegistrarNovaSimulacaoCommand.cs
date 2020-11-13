@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimulaParcela.Dominio.Command
+namespace SimulaParcela.Domain.Command
 {
     public class RegistrarNovaSimulacaoCommand
     {

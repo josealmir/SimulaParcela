@@ -3,7 +3,7 @@ using Rebus.Persistence.InMem;
 using Rebus.Routing.TypeBased;
 using Rebus.ServiceProvider;
 using Rebus.Transport.InMem;
-using SimulaParcela.Dominio.Command;
+using SimulaParcela.Domain.Command;
 
 namespace SimulaParcela.Api.Configuration
 {

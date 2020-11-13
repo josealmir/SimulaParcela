@@ -7,7 +7,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
 COPY ["SimulaParcela.Api/SimulaParcela.Api.csproj", "SimulaParcela.Api/"]
 COPY ["SimulaParcela.Repositorio/SimulaParcela.Repositorio.csproj", "SimulaParcela.Repositorio/"]
-COPY ["SimulaParcela.Dominio/SimulaParcela.Dominio.csproj", "SimulaParcela.Dominio/"]
+COPY ["SimulaParcela.Domain/SimulaParcela.Domain.csproj", "SimulaParcela.Domain/"]
 RUN dotnet restore "SimulaParcela.Api/SimulaParcela.Api.csproj"
 COPY . .
 WORKDIR "/src/SimulaParcela.Api"
